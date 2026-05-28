@@ -193,7 +193,7 @@ button:disabled{opacity:.5;cursor:not-allowed;transform:none!important}
 .zone-chip.active{background:var(--or-yellow);border-color:var(--or-yellow-d);color:var(--gray-3);box-shadow:0 2px 10px rgba(255,204,0,.35)}
 
 /* ── Admin header ── */
-.admin-header{background:linear-gradient(135deg,#1a1a2e,#16213e);height:var(--header-h);display:flex;align-items:center;padding:0 16px;position:sticky;top:0;z-index:100;box-shadow:0 2px 18px rgba(0,0,0,.25)}
+.admin-header{background:var(--or-yellow);height:var(--header-h);display:flex;align-items:center;padding:0 16px;position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(0,0,0,.12)}
 
 /* ── Stat card ── */
 .stat-card-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
@@ -224,9 +224,9 @@ img.res-card-img{background:linear-gradient(135deg,#FFF8CC 0%,#FFE566 60%,#FFCC0
 @media(max-width:480px){.res-card-img{height:170px}}
 
 /* ── Zone group horizontal scroll cards ── */
-.zone-scroll-card{flex-shrink:0;width:165px;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 3px 14px rgba(0,0,0,.09);cursor:pointer;transition:box-shadow .2s,transform .2s}
+.zone-scroll-card{flex-shrink:0;width:185px;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 3px 14px rgba(0,0,0,.09);cursor:pointer;transition:box-shadow .2s,transform .2s}
 .zone-scroll-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.15)}
-@media(max-width:480px){.zone-scroll-card{width:145px}}
+@media(max-width:480px){.zone-scroll-card{width:155px}}
 
 /* ── Page container ── */
 .page-container{max-width:900px;margin:0 auto;padding:16px 14px;display:flex;flex-direction:column;gap:16px}
@@ -553,7 +553,7 @@ function UserModal({ mode, data, onClose, onSave, loading }) {
         <div style={{ padding:'16px 22px 0', display:'flex', alignItems:'center', justifyContent:'space-between' }}>
           <div>
             <h3 style={{ fontSize:'21px', color:'var(--gray-3)', fontWeight:800 }}>
-              {isEdit ? '✏️ แก้ไขผู้ใช้' : '👤 เพิ่มผู้ใช้ใหม่'}
+              {isEdit ? '✏️ แก้ไขผู้ใช้' : '🙋 เพิ่มผู้ใช้ใหม่'}
             </h3>
             <p style={{ fontSize:'12px', color:'var(--gray-9)', marginTop:'3px' }}>
               {isEdit ? `กำลังแก้ไข: ${data?.username}` : 'สร้างบัญชีผู้ใช้ในระบบ'}
@@ -587,7 +587,7 @@ function UserModal({ mode, data, onClose, onSave, loading }) {
               {['user','admin'].map(r => (
                 <button key={r} type="button" onClick={() => setForm(f => ({ ...f, role:r }))}
                   style={{ flex:1, padding:'12px', borderRadius:'10px', fontSize:'14px', fontWeight:700, border:`2px solid ${form.role===r ? 'var(--or-yellow-d)':'var(--gray-d)'}`, background:form.role===r ? 'var(--or-yellow-l)':'#fff', color:form.role===r ? '#7A5C00':'var(--gray-9)', minHeight:'48px' }}>
-                  {r==='admin' ? '🛡️ Admin':'👤 User'}
+                  {r==='admin' ? '🛡️ Admin':'🙋 User'}
                 </button>
               ))}
             </div>
@@ -757,9 +757,9 @@ function RestaurantCard({ res, onClick }) {
 function ZoneCardImage({ imgs, name }) {
   const [err, setErr] = useState(false);
   if (imgs.length > 0 && !err) {
-    return <img src={imgUrl(imgs[0])} alt={name} style={{ width:'100%', height:'110px', objectFit:'cover', display:'block' }} onError={() => setErr(true)} />;
+    return <img src={imgUrl(imgs[0])} alt={name} style={{ width:'100%', height:'145px', objectFit:'cover', display:'block' }} onError={() => setErr(true)} />;
   }
-  return <div style={{ width:'100%', height:'110px', background:'linear-gradient(135deg,#FFF8CC,#FFE066)', display:'flex', alignItems:'center', justifyContent:'center', fontSize:'38px' }}>🍽️</div>;
+  return <div style={{ width:'100%', height:'145px', background:'linear-gradient(135deg,#FFF8CC,#FFE066)', display:'flex', alignItems:'center', justifyContent:'center', fontSize:'38px' }}>🍽️</div>;
 }
 
 // ─── Featured Restaurants Section ──────────────────────────────────────────────
@@ -1067,17 +1067,14 @@ export default function App() {
 
           <header className="admin-header">
             <div style={{ display:'flex', alignItems:'center', gap:'12px' }}>
-              <div style={{ width:'36px', height:'36px', borderRadius:'10px', background:'linear-gradient(135deg,var(--or-yellow),#FFD700)', display:'flex', alignItems:'center', justifyContent:'center', fontSize:'18px', flexShrink:0, boxShadow:'0 3px 10px rgba(255,204,0,.4)' }}>🛡️</div>
+              <div style={{ width:'36px', height:'36px', borderRadius:'10px', background:'rgba(0,0,0,.12)', display:'flex', alignItems:'center', justifyContent:'center', fontSize:'18px', flexShrink:0 }}>🛡️</div>
               <div>
-                <div style={{ fontSize:'18px', color:'#fff', fontWeight:800, lineHeight:1.2 }}>ADMIN PANEL</div>
-                <div style={{ fontSize:'10px', color:'rgba(255,255,255,.45)', letterSpacing:'.1em', fontWeight:600 }}>YUMMY LOG</div>
+                <div style={{ fontSize:'18px', color:'var(--gray-3)', fontWeight:800, lineHeight:1.2 }}>ADMIN PANEL</div>
+                <div style={{ fontSize:'10px', color:'rgba(0,0,0,.4)', letterSpacing:'.1em', fontWeight:600 }}>YUMMY LOG</div>
               </div>
             </div>
             <div style={{ display:'flex', alignItems:'center', gap:'10px' }}>
-              <span style={{ fontSize:'12px', color:'rgba(255,255,255,.6)', fontWeight:600 }} className="hide-mobile">👤 {user.username}</span>
-              <button type="button" onClick={handleLogout} style={{ background:'rgba(255,255,255,.1)', color:'rgba(255,255,255,.85)', padding:'8px 16px', borderRadius:'10px', fontSize:'13px', border:'1px solid rgba(255,255,255,.2)', fontWeight:700, minHeight:'36px' }}>
-                ออกจากระบบ
-              </button>
+              <span style={{ fontSize:'12px', color:'rgba(0,0,0,.55)', fontWeight:600 }} className="hide-mobile">🙋 {user.username}</span>
             </div>
           </header>
 
@@ -1102,7 +1099,7 @@ export default function App() {
                   {[
                     { label:'สมาชิกทั้งหมด', value:stats.totalUsers, unit:'บัญชี', icon:'👥', color:'#E6B800', bg:'linear-gradient(135deg,#fff 60%,#FFF8CC)' },
                     { label:'ร้านอาหารทั้งหมด', value:stats.totalRestaurants, unit:'ร้าน', icon:'🍽️', color:'#27AE60', bg:'linear-gradient(135deg,#fff 60%,#E8F8EE)' },
-                    { label:'ผู้ใช้ทั่วไป', value:adminUsers.filter(u=>u.role==='user').length, unit:'บัญชี', icon:'👤', color:'#2980B9', bg:'linear-gradient(135deg,#fff 60%,#EAF4FB)' },
+                    { label:'ผู้ใช้ทั่วไป', value:adminUsers.filter(u=>u.role==='user').length, unit:'บัญชี', icon:'🙋', color:'#2980B9', bg:'linear-gradient(135deg,#fff 60%,#EAF4FB)' },
                     { label:'ผู้ดูแลระบบ', value:adminUsers.filter(u=>u.role==='admin').length, unit:'บัญชี', icon:'🛡️', color:'#8E44AD', bg:'linear-gradient(135deg,#fff 60%,#F5EEF8)' },
                   ].map(s => (
                     <div key={s.label} className="card" style={{ padding:'20px 16px', background:s.bg, borderLeft:`4px solid ${s.color}` }}>
@@ -1125,7 +1122,7 @@ export default function App() {
                   <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(180px,1fr))', gap:'11px' }}>
                     {[
                       { icon:'📅', label:'สมาชิกล่าสุด', value:adminUsers[0]?.username||'—' },
-                      { icon:'📊', label:'เฉลี่ยร้านต่อคน', value:stats.totalUsers ? (stats.totalRestaurants/stats.totalUsers).toFixed(1)+' ร้าน/คน':'—' },
+                      { icon:'📊', label:'เฉลี่ยร้านต่อ User', value:(()=>{ const userCount=adminUsers.filter(u=>u.role==='user').length; return userCount ? (stats.totalRestaurants/userCount).toFixed(1)+' ร้าน/คน':'—'; })() },
                     ].map(item => (
                       <div key={item.label} style={{ background:'var(--gray-f)', borderRadius:'12px', padding:'14px 16px', display:'flex', gap:'12px', alignItems:'center', border:'1px solid var(--gray-e)' }}>
                         <div style={{ fontSize:'24px', flexShrink:0 }}>{item.icon}</div>
@@ -1158,21 +1155,21 @@ export default function App() {
                 <div style={{ display:'flex', gap:'8px', flexWrap:'wrap' }}>
                   <span className="tag tag-yellow">👥 ทั้งหมด {filteredAdminUsers.length}</span>
                   <span className="tag tag-admin">🛡️ Admin {filteredAdminUsers.filter(u=>u.role==='admin').length}</span>
-                  <span className="tag tag-green">👤 User {filteredAdminUsers.filter(u=>u.role==='user').length}</span>
+                  <span className="tag tag-green">🙋 User {filteredAdminUsers.filter(u=>u.role==='user').length}</span>
                 </div>
 
                 <div className="card">
                   <div style={{ padding:'12px', display:'flex', flexDirection:'column', gap:'7px', maxHeight:'62vh', overflowY:'auto' }}>
                     {filteredAdminUsers.length === 0 ? (
                       <div style={{ textAlign:'center', padding:'48px', color:'var(--gray-9)' }}>
-                        <div style={{ fontSize:'36px', marginBottom:'12px', opacity:.4 }}>👤</div>
+                        <div style={{ fontSize:'36px', marginBottom:'12px', opacity:.4 }}>🔍</div>
                         <p>ไม่พบสมาชิกที่ค้นหา</p>
                       </div>
                     ) : filteredAdminUsers.map((u,i) => (
                       <div key={u._id} style={{ background:i%2===0?'#fff':'var(--gray-f)', borderRadius:'11px', padding:'12px 14px', display:'flex', alignItems:'center', justifyContent:'space-between', gap:'10px', border:'1px solid var(--gray-e)', animation:`fadeIn .2s ease ${i*.02}s both` }}>
                         <div style={{ display:'flex', alignItems:'center', gap:'12px', minWidth:0, flex:1 }}>
                           <div style={{ width:'42px', height:'42px', borderRadius:'12px', flexShrink:0, background:u.role==='admin' ? 'linear-gradient(135deg,var(--or-yellow),#FFD700)':'var(--gray-e)', display:'flex', alignItems:'center', justifyContent:'center', fontSize:'18px', boxShadow:u.role==='admin'?'0 3px 10px rgba(255,204,0,.35)':'none' }}>
-                            {u.role==='admin' ? '🛡️':'👤'}
+                            {u.role==='admin' ? '🛡️':'🙋'}
                           </div>
                           <div style={{ minWidth:0 }}>
                             <div style={{ fontSize:'14px', fontWeight:700, overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap' }}>{u.username}</div>
@@ -1214,7 +1211,7 @@ export default function App() {
             </button>
           ))}
           <button type="button" className="tab-btn" onClick={handleLogout}>
-            <span className="tab-icon">🚪</span>ออก
+            <span className="tab-icon">🔓</span>ออก
           </button>
         </div>
 
@@ -1236,8 +1233,7 @@ export default function App() {
           <div style={{ fontFamily:'Prompt,sans-serif', fontSize:'20px', fontWeight:800, color:'var(--gray-3)', letterSpacing:'-.02em', flexShrink:0 }}>
             YUMMY<span style={{ color:'var(--or-red)' }}>LOG</span>
           </div>
-          <input type="text" className="or-search" placeholder="🔍 ค้นหาชื่อร้าน เมนู หรือทำเล..."
-            value={searchQ} onChange={e => { setSearchQ(e.target.value); if(activeTab!=='search') setActiveTab('search'); }} />
+          <div style={{ flex:1 }} />
           <div style={{ display:'flex', alignItems:'center', gap:'8px', flexShrink:0 }}>
             <span className="tag" style={{ fontSize:'11px', background:'rgba(255,255,255,.75)', border:'1px solid rgba(0,0,0,.1)', fontWeight:700 }}>
               ★ {restaurants.length}
@@ -1296,7 +1292,7 @@ export default function App() {
                   {filtered.length > 0 && (
                     <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', padding:'0 2px' }}>
                       <span className="section-title">
-                        {filterZone ? `${ZONE_EMOJI[filterZone]} ${filterZone.split(' / ')[0]}` : '🗂 ร้านทั้งหมด'}
+                        {filterZone ? `${ZONE_EMOJI[filterZone]} ${filterZone.split(' / ')[0]}` : '🍜 ร้านทั้งหมด'}
                       </span>
                       <span className="tag tag-yellow">{filtered.length} ร้าน</span>
                     </div>
@@ -1449,7 +1445,7 @@ export default function App() {
           </button>
         ))}
         <button type="button" className="tab-btn" onClick={handleLogout}>
-          <span className="tab-icon">🚪</span>ออก
+          <span className="tab-icon">🔓</span>ออก
         </button>
       </div>
 
